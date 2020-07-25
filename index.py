@@ -5,6 +5,8 @@ import sys
 import os
 import re
 
+from modulify import camel_to_snake, create_package_directory
+
 CLASS = 'CLASS'
 FUNCTION = 'FUNCTION'
 IMPORT = 'IMPORT'
@@ -19,10 +21,6 @@ ENTITIES = {
 
 init_file_content = ''
 
-
-def camel_to_snake(name):
-    name = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
-    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', name).lower()
 
 
 def is_indented(value: str):
@@ -59,11 +57,7 @@ def write_entity(working_directory, current_entity_name, imports, current_entity
 
 
 for file_address in sys.argv[1:]:
-
-    directory, file_name = os.path.split(file_address)
-    working_directory = directory + os.sep + file_name.split('.')[0]
-    Path(working_directory).mkdir(parents=True, exist_ok=True)
-    _, app_name = os.path.split(directory)
+    app_name, working_directory=create_package_directory(file_address=file_address)
     with open(file_address, 'r') as working_file:
         processed_entities = set()
         current_entity_dependencies = set()
