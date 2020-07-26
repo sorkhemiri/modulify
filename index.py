@@ -12,18 +12,6 @@ from modulify import camel_to_snake, create_package_directory, get_entity, ENTIT
 init_file_content = ''
 
 
-
-def is_indented(value: str):
-    return value[0].isalpha()
-
-
-def bonded_to_previous(value: str):
-    return is_indented(value) or value.startswith(')')
-
-
-
-
-
 def write_entity(working_directory, current_entity_name, imports, current_entity_result, current_entity_dependencies, file_name, app_name):
     snake = camel_to_snake(current_entity_name)
     global init_file_content
