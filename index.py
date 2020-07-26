@@ -5,7 +5,7 @@ import sys
 import os
 import re
 
-from modulify import camel_to_snake, create_package_directory, ENTITIES, IMPORT, DECORATOR
+from modulify import camel_to_snake, create_package_directory, get_entity, ENTITIES, IMPORT, DECORATOR
 
 
 
@@ -21,11 +21,7 @@ def bonded_to_previous(value: str):
     return is_indented(value) or value.startswith(')')
 
 
-def get_entity(value: str):
-    for entity, values in ENTITIES.items():
-        if any([True if value.startswith(item) else False for item in values]):
-            return entity
-    return None
+
 
 
 def write_entity(working_directory, current_entity_name, imports, current_entity_result, current_entity_dependencies, file_name, app_name):
