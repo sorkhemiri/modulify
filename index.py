@@ -5,19 +5,9 @@ import sys
 import os
 import re
 
-from modulify import camel_to_snake, create_package_directory
+from modulify import camel_to_snake, create_package_directory, ENTITIES, IMPORT, DECORATOR
 
-CLASS = 'CLASS'
-FUNCTION = 'FUNCTION'
-IMPORT = 'IMPORT'
-DECORATOR = 'DECORATOR'
 
-ENTITIES = {
-    CLASS: ['class'],
-    FUNCTION: ['def'],
-    IMPORT: ['import', 'from'],
-    DECORATOR: ['@'],
-}
 
 init_file_content = ''
 
