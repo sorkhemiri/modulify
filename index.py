@@ -57,7 +57,7 @@ def write_entity(working_directory, current_entity_name, imports, current_entity
 
 
 for file_address in sys.argv[1:]:
-    app_name, working_directory=create_package_directory(file_address=file_address)
+    app_name, working_directory, file_name = create_package_directory(file_address=file_address)
     with open(file_address, 'r') as working_file:
         processed_entities = set()
         current_entity_dependencies = set()
